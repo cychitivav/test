@@ -1,4 +1,4 @@
-# IROC Bridge Signaling Protocol Specification
+## Signaling Protocol Specification
 
 This document outlines the signaling protocol IROC Bridge package uses to communicate with clients.
 Designed to communicate between the web client and ROS.
