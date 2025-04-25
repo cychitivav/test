@@ -5,6 +5,14 @@ kramdown:
   parse_block_html: true
 
 
-# remote_theme: jekyll-theme-minimal
-remote_theme: Bilal2453/cayman-docs
-
+theme: jekyll-theme-minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-archives
+  - jemoji
+  - jekyll-paginate-v2
+  - jekyll-gist
+  - jekyll-assets
+  - jekyll-redirect-from
