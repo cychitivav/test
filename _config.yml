@@ -5,15 +5,8 @@
 title: sdfsdf
 description: ddddd
 
-
-# Markdown and syntax highlight
 markdown: kramdown
-highlighter: rouge
 kramdown:
-  parse_block_html: true
-  input: GFM
   remove_block_html_tags: true
 
-remove_HTML_comments: false
-
-remote_theme: jekyll-theme-minimal
+remote_theme: jekyll-theme-minima
