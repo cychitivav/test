@@ -1,11 +1,6 @@
-title: IROC bridge
-description: Signaling Protocol Specification
 markdown: GFM
 remote_theme: jekyll/minima@8106bd4
 highlighter: rouge
 minima:
   skin: "auto"
-  social_links:
-    - title: GitHub
-      icon: github
-      url: "https://github.com/fly4future/iroc_bridge"
+  hide_site_feed_link: true 
