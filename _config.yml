@@ -1,9 +1,7 @@
-title: IROC Bridge Signaling Protocol Specification
+title: ""
 description: ""
 markdown: GFM
 remote_theme: jekyll/minima@v2.5.2
 highlighter: rouge
 minima:
   skin: "auto"
-  hide_site_title: true
-  hide_site_description: true
