@@ -5,5 +5,5 @@ remote_theme: jekyll/minima@v2.5.2
 highlighter: rouge
 minima:
   skin: "auto"
-  hide_site_feed_link: true
-  enable_theme_switch: true
+  hide_site_title: true
+  hide_site_description: true
