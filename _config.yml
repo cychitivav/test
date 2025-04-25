@@ -2,8 +2,9 @@ title: ""
 
 markdown: kramdown
 kramdown:
-  remove_block_html_tags: true
-  syntax_highlighter: rouge
+  parse_block_html: true
 
 
-remote_theme: jekyll-theme-minimal
+# remote_theme: jekyll-theme-minimal
+remote_theme: Bilal2453/cayman-docs
+
