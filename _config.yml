@@ -5,3 +5,4 @@ highlighter: rouge
 minima:
   skin: "auto"
   hide_site_feed_link: true
+  enable_theme_switch: true
