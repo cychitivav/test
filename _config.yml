@@ -2,7 +2,8 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: ""
+title: sdfsdf
+description: ddddd
 
 
 # Markdown and syntax highlight
@@ -15,6 +16,4 @@ kramdown:
 
 remove_HTML_comments: false
 
-remote_theme: dirkfabisch/mediator
-plugins:
-- jekyll-remote-theme 
+remote_theme: jekyll-theme-minimal
