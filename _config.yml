@@ -1,9 +1,9 @@
 title: ""
 
 markdown: kramdown
-highlighter: rouge
 kramdown:
   remove_block_html_tags: true
+  syntax_highlighter: rouge
 
 
 remote_theme: jekyll-theme-minimal
