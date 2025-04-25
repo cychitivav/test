@@ -1,8 +1,8 @@
 title: ""
 
-# markdown: kramdown
+markdown: GFM
 # kramdown:
 #   parse_block_html: true
 
 
-remote_theme: jekyll-theme-minima
+remote_theme: jekyller/jekyll-theme-chirpy
