@@ -5,4 +5,7 @@ remote_theme: jekyll/minima@8106bd4
 highlighter: rouge
 minima:
   skin: "auto"
-  show_excerpts: true
+  social_links:
+    - title: GitHub
+      icon: github
+      url: "https://github.com/fly4future/iroc_bridge"
