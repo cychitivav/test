@@ -95,7 +95,6 @@ Endpoints for controlling the robot environment.
     "min_z": 343
   }
   ```
-
   </details>
 
 - <strong style="color: #49cc90">`POST`</strong>
