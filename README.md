@@ -67,8 +67,10 @@ Endpoints for controlling the robot environment.
   <span style="color: gray">
   Set the safety area borders.
   </span>
-  <details>
-  <summary><em>Body</em> <span style="color: gray">raw (json)</span></summary>
+  <details> 
+  <summary>
+  <em>Body</em> <span style="color: gray">raw (json)</span>
+  </summary>
 
   ```json
   {
@@ -95,6 +97,7 @@ Endpoints for controlling the robot environment.
     "min_z": 343
   }
   ```
+
   </details>
 
 - <strong style="color: #49cc90">`POST`</strong>
