@@ -4,4 +4,3 @@ remote_theme: jekyll/minima@v2.5.2
 highlighter: rouge
 minima:
   skin: "auto"
-  title: false
