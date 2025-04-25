@@ -2,15 +2,16 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: title (if blank, full name will be used instead)
+title: ""
 
 
 # Markdown and syntax highlight
 markdown: kramdown
 highlighter: rouge
-highlight_theme: github  # https://github.com/jwarby/jekyll-pygments-themes
 kramdown:
+  parse_block_html: true
   input: GFM
+  remove_block_html_tags: true
 
 remove_HTML_comments: false
 
