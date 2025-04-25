@@ -1,13 +1,9 @@
-# -----------------------------------------------------------------------------
-# Site settings
-# -----------------------------------------------------------------------------
-
-title: sdfsdf
-description: ddddd
+title: ""
 
 markdown: kramdown
 highlighter: rouge
 kramdown:
   remove_block_html_tags: true
 
-remote_theme: jekyll-theme-minima
+
+remote_theme: jekyll-theme-minimal
