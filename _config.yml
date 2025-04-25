@@ -6,6 +6,7 @@ title: sdfsdf
 description: ddddd
 
 markdown: kramdown
+highlighter: rouge
 kramdown:
   remove_block_html_tags: true
 
