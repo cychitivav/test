@@ -1,6 +1,6 @@
 title: IROC bridge
 markdown: GFM
-remote_theme: jekyll/minima
+remote_theme: jekyll/minima@master
 highlighter: rouge
 minima:
   skin: "auto"
