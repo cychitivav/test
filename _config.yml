@@ -10,4 +10,4 @@ minima:
       icon: github
       url: "https://github.com/fly4future/iroc_bridge"
 titles_from_headings:
-  enabled: false
+  strip_title: true
