@@ -3,6 +3,24 @@
 This document outlines the signaling protocol IROC Bridge package uses to communicate with clients.
 Designed to communicate between the web client and ROS.
 
+```mermaid
+flowchart TD
+    A[Cliente realiza petición HTTP] --> B[SimpleApprun]
+    B --> C[Servidor escucha peticiones]
+    C --> D[Recibe solicitud crowrequest]
+    D --> E[Router maneja la solicitud: Routerhandle]
+    E --> F{¿Ruta exacta coincide?}
+    F -- Sí --> G[Ejecutar handler asociado]
+    F -- No --> H{¿Ruta con parámetros coincide?}
+    H -- Sí --> G
+    H -- No --> I{¿Ruta REGEX coincide?}
+    I -- Sí --> G
+    I -- No --> J[Responder 404 Not Found]
+
+    G --> K[Handler prepara crow::response]
+    K --> L[Enviar respuesta al cliente]
+```
+
 ## HTTP API
 
 You can use the HTTP API to send requests to interact with the robots and receive status information.
