@@ -11,3 +11,5 @@ minima:
       url: "https://github.com/fly4future/iroc_bridge"
 titles_from_headings:
   strip_title: true
+plugin:
+  - jekyll-mermaid
