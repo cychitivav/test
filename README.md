@@ -3,24 +3,6 @@
 This document outlines the signaling protocol IROC Bridge package uses to communicate with clients.
 Designed to communicate between the web client and ROS.
 
-```mermaid
-flowchart TD
-    A[Cliente realiza petición HTTP] --> B[SimpleApprun]
-    B --> C[Servidor escucha peticiones]
-    C --> D[Recibe solicitud crowrequest]
-    D --> E[Router maneja la solicitud: Routerhandle]
-    E --> F{¿Ruta exacta coincide?}
-    F -- Sí --> G[Ejecutar handler asociado]
-    F -- No --> H{¿Ruta con parámetros coincide?}
-    H -- Sí --> G
-    H -- No --> I{¿Ruta REGEX coincide?}
-    I -- Sí --> G
-    I -- No --> J[Responder 404 Not Found]
-
-    G --> K[Handler prepara crow::response]
-    K --> L[Enviar respuesta al cliente]
-```
-
 ## HTTP API
 
 You can use the HTTP API to send requests to interact with the robots and receive status information.
@@ -160,6 +142,11 @@ Endpoints for controlling the robot environment.
 
 The missions are handled by `IROC Fleet Manager`: node responsible of sending the mission to the robots, monitoring their progress and sending the aggregated information to the `IROC Bridge`.
 
+<figure align="center">
+  <img src="./sequence_diagram.svg" alt="Sequence Diagram" width="100%">
+  <figcaption>Mission Sequence Diagram</figcaption>
+</figure>
+
 - <strong style="color: #49cc90">`POST`</strong>
   **/mission/waypoints**  
   <span style="color: gray">
@@ -230,6 +217,56 @@ The missions are handled by `IROC Fleet Manager`: node responsible of sending th
 
   </details>
 
+#### Mission Control Endpoints
+
+We support for both fleet-wide and individual robot mission control.
+
+##### Fleet Mission Control:
+
+These endpoints control the mission status for all assigned robots at once: \
+
+- <strong style="color: #49cc90">`POST`</strong>
+  **/mission/start**  
+  <span style="color: gray">
+  Start the mission for all robots.
+  </span>
+- <strong style="color: #49cc90">`POST`</strong>
+  **/mission/pause**  
+  <span style="color: gray">
+  Pause the mission for all robots.
+  </span>
+- <strong style="color: #49cc90">`POST`</strong>
+  **/mission/stop**  
+  <span style="color: gray">
+  Stop the mission for all robots.
+  </span>
+
+##### Robot Mission Control:
+
+You can also control individual mission robots using these endpoints:
+
+- <strong style="color: #49cc90">`POST`</strong>
+  **/robots/{_robot_name_}/mission/start**  
+   <span style="color: gray">
+  Start the mission for a specific robot.
+  </span>
+
+  > **NOTE** \
+  > Starting a mission for a single robot will activate that robot while the others remain in a waiting state. You can later use the `/mission/start` endpoint to activate the remaining robots and continue the mission.
+
+- <strong style="color: #49cc90">`POST`</strong>
+  **/robots/{_robot_name_}/mission/pause**  
+  <span style="color: gray">
+  Pause the mission for a specific robot.
+  </span>
+- <strong style="color: #49cc90">`POST`</strong>
+  **/robots/{_robot_name_}/mission/stop**  
+   <span style="color: gray">
+  Stop the mission for a specific robot.
+  </span>
+  > **NOTE** \
+  > Stopping the mission for a single robot will also abort the overall mission and stop all other robots. This behavior is intentional, as the mission assumes the participation of all assigned robots.
+
 #### Feedback
 
 During an active mission, the feedback message is broadcasted to the connected clients through a WebSocket in the `/telemetry` path.
@@ -276,12 +313,12 @@ During an active mission, the feedback message is broadcasted to the connected c
 
   </details>
 
-> **NOTE**  \
+> **NOTE** \
 > Autonomy test follows the same structure as the waypoint mission feedback, but it will always contain only one robot.
 
 #### Result
 
-When a mission is finished, the result message message will be sent to
+When a mission is finished, the result message will be sent to
 
 <strong style="color: #49cc90">`POST`</strong>
 **http://server:8000/api/missions/result**  
@@ -297,7 +334,7 @@ Send the result of the mission.
 ```json
 {
   "success": true,
-  "message": "All robots finished succesfully",
+  "message": "All robots finished successfully",
   "robot_results": [
     {
       "robot_name": "uav1",
@@ -314,56 +351,6 @@ Send the result of the mission.
 ```
 
 </details>
-
-#### Mission Control Endpoints
-
-We support for both fleet-wide and individual robot mission control.
-
-##### Fleet Mission Control:
-
-These endpoints control the mission status for all assigned robots at once: \
-
-- <strong style="color: #49cc90">`POST`</strong>
-  **/mission/start**  
-  <span style="color: gray">
-  Start the mission for all robots.
-  </span>
-- <strong style="color: #49cc90">`POST`</strong>
-  **/mission/pause**  
-  <span style="color: gray">
-  Pause the mission for all robots.
-  </span>
-- <strong style="color: #49cc90">`POST`</strong>
-  **/mission/stop**  
-  <span style="color: gray">
-  Stop the mission for all robots.
-  </span>
-
-##### Robot Mission Control:
-
-You can also control individual mission robots using these endpoints:
-
-- <strong style="color: #49cc90">`POST`</strong>
-  **/robots/{_robot_name_}/mission/start**  
-   <span style="color: gray">
-  Start the mission for a specific robot.
-  </span>
-
-  > **NOTE**  \
-  > Starting a mission for a single robot will activate that robot while the others remain in a waiting state. You can later use the `/mission/start` endpoint to activate the remaining robots and continue the mission.
-
-- <strong style="color: #49cc90">`POST`</strong>
-  **/robots/{_robot_name_}/mission/pause**  
-  <span style="color: gray">
-  Pause the mission for a specific robot.
-  </span>
-- <strong style="color: #49cc90">`POST`</strong>
-  **/robots/{_robot_name_}/mission/stop**  
-   <span style="color: gray">
-  Stop the mission for a specific robot.
-  </span>
-  > **NOTE**  \
-  > Stopping the mission for a single robot will also abort the overall mission and stop all other robots. This behavior is intentional, as the mission assumes the participation of all assigned robots.
 
 ## WebSocket API
 
@@ -625,5 +612,5 @@ The features for the camera streaming are available, and the setup can be tested
 
 This will start the WebRTC server and allow the camera stream to be visualized on port `9090` of the server.
 
-> **NOTE**  \
+> **NOTE** \
 > Please follow the instructions for the installation of dependencies in the [webrtc_ros](https://github.com/fly4future/webrtc_ros) repository. A detailed example of how the integration can be done is [here](https://github.com/fly4future/webrtc_ros/blob/develop/web/TUTORIAL.md).
